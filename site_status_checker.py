@@ -1,14 +1,48 @@
 import urllib.request as urllib
 
+# For checking the status of a single site
 
-def main(url):
-    print("Checking connectivity ")
-    
-    response = urllib.urlopen(url)
-    print("Connected to" , url, "succesfully")
+
+def single_check():
+
+    print("The program is now running...")
+
+    input_url = input("Input the url of the site you want to check: ")
+
+    response = urllib.urlopen(input_url)
+
+    print("Connected to", input_url, "succesfully")
+
     print("The response code was: ", response.getcode())
 
-print("This is a site connectivity checker program")
-input_url = input("Input the url of the site you want to check: ")
+    print("**********************************")
 
-main(input_url)
+
+# For checking the status of multiple sites
+def multiple_check():
+
+    print("The program is now running...")
+
+    with open("urls.txt", "r") as f:
+
+        for line in f:
+
+            response = urllib.urlopen(line)
+            try:
+                print("Connected to", line, "succesfully")
+                print("The response code was: ", response.getcode())
+                print("**********************************")
+            except:
+                print("The site", line, "is down")
+                print("**********************************")
+
+            # print("Connected to", line, "succesfully")
+
+            # print("The response code was: ", response.getcode())
+
+            print("**********************************")
+
+
+print("**********************************")
+
+multiple_check()
