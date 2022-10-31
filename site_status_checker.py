@@ -32,17 +32,11 @@ def multiple_check():
                 print("Connected to", line, "succesfully")
                 print("The response code was: ", response.getcode())
                 print("**********************************")
-            except:
-                print("The site", line, "is down")
+            except urllib.HTTPError as e:
+                print("The site", line, "is not responding")
+                print("The error code was: ", e.code)
                 print("**********************************")
+                break
 
-            # print("Connected to", line, "succesfully")
-
-            # print("The response code was: ", response.getcode())
-
-            print("**********************************")
-
-
-print("**********************************")
 
 multiple_check()
